@@ -1,0 +1,14 @@
+\frametitle{Vereinfachung von RDF-Ausdrücken mit OWL}
+\begin{block}{Klassen in RDFS}
+\begin{lstlisting}[lang="xml"]
+<rdf:Description about="&ex;Klassennahme">
+  <rdf:type resource="&rdfs;Class"/>
+</rdf:Description>
+\end{lstlisting}
+\end{block}
+\begin{block}{OWL}
+\begin{lstlisting}[lang="xml"]
+<owl:Class about="&ex;Klassennahme"/>
+\end{lstlisting}
+\end{block}
+
