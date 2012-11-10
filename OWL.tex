@@ -2,8 +2,6 @@
 \usepackage{listings}
 \usepackage[utf8x]{inputenc}
 \usepackage{color}
-\definecolor{specialblue}{rgb}{0.2,0.2,0.7}
-
 \lstset{
   language=xml,
   float=htbp,
@@ -57,20 +55,75 @@
 \section{Vereinfachung von RDF-Ausdrücken mit OWL}
 \begin{frame}[fragile]{Vereinfachung von RDF-Ausdrücken mit
 OWL}
+\begin{block}{Vereinfachung von Ausdrücken}
+\begin{itemize}
+\item RDF/RDFS lässt sich durch OWL einfacher und abgekürzt ausdrücken
+\end{itemize}
+\end{block}
+
+\begin{block}{Daher}
+\begin{itemize}
+\item Kurze Auflistung von Abkürzungen.
+\item kennenlernen der wesentlichen Sprachkonstrukt
+\end{itemize}
+\end{block}
+
+
+\end{frame}
+\begin{frame}[fragile]{Vereinfachung von RDF-Ausdrücken mit
+OWL}{Klassen}
 \begin{block}{Klassen in RDFS}
 \begin{lstlisting}[lang="xml"]
-<rdf:Description about="&ex;Klassennahme">
+<rdf:Description about="&ex;Klassenname">
   <rdf:type resource="&rdfs;Class"/>
 </rdf:Description>
 \end{lstlisting}
 \end{block}
 \begin{block}{OWL}
 \begin{lstlisting}[lang="xml"]
-<owl:Class about="&ex;Klassennahme"/>
+<owl:Class about="&ex;Klassenname"/>
 \end{lstlisting}
 \end{block}
 
 \end{frame}
+
+\begin{frame}[fragile]{Vereinfachung von RDF-Ausdrücken mit
+OWL}{Individuen}
+\begin{block}{Individuen in RDFS}
+\begin{lstlisting}[lang="xml"]
+<rdf:Description about="&ex;individuum">
+  <rdf:type resource="&ex;Klassenname"/>
+</rdf:Description>
+\end{lstlisting}
+\end{block}
+\begin{block}{OWL}
+\begin{lstlisting}[lang="xml"]
+<ex:individuum about="&ex;Klassenname"/>
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Vereinfachung von RDF-Ausdrücken mit
+OWL}{Unterklassen}
+\begin{block}{Unterklassen in RDFS}
+\begin{lstlisting}[lang="xml"]
+<rdf:Description about="&ex;Klassenname">
+  <rdf:type resource="&rdfs;Class"/>
+  <rdfs:subClassOf rdf:resource="&ex;Oberklasse"/>
+</rdf:Description>
+\end{lstlisting}
+\end{block}
+\begin{block}{OWL}
+\begin{lstlisting}[lang="xml"]
+<owl:Class about="&ex;Klassenname">
+  <rdfs:subClassOf rdf:resource="&ex;Oberklasse"/>
+</owl:Class>
+\end{lstlisting}
+\end{block}
+
+\end{frame}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%% M was kann nicht in RDF ausgedrückt werden?
 
@@ -97,6 +150,31 @@ $\rightarrow$ Kein Widerspruch, auch nicht Möglich diesen auszudrücken
 %%%%%%%%%%%%%%%%%%%%%% T Neues in OWL, dass Ausdrucksmöglichkeiten von RDF übersteigt (Hier Header beschreiben)
 
 %%%%%%%%%%%%%%%%%%%%%% M Probleme in OWL: Entscheidbarkeit etc.
+
+\section{Probleme von OWL}
+
+\begin{frame}{Probleme von OWL}
+\begin{block}{Mächtigkeit}
+\begin{itemize}
+\item Ausdrucksmöglichkeiten mit OWL (fast) unbegrenzt
+\item In gezeigter Form sehr Mächtig
+\end{itemize}
+\end{block}
+
+\begin{alertblock}{Wo ist der Haken?}
+\begin{itemize}
+\item OWL in dieser Form nicht entscheidbar
+\item Schlussfolgerungen liegen in \emph{EXP}
+\end{itemize}
+\end{alertblock}
+\begin{block}{Lösung: Aufteilung in Varianten}
+\begin{enumerate}
+\item OWL Full
+\item OWL DL
+\item OWL Lite
+\end{enumerate}
+\end{block}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%% -> Drei OWL-Varianten
 %%%%%%%%%%%%%%%%%%%%%% T eingehena auf Tabelle 
