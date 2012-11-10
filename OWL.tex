@@ -2,8 +2,37 @@
 \usepackage{listings}
 \usepackage[utf8x]{inputenc}
 \usepackage{color}
-\usetheme{Boadilla}
 \definecolor{specialblue}{rgb}{0.2,0.2,0.7}
+
+\lstset{
+  language=xml,
+  float=htbp,
+        tabsize=4,
+        linewidth=\linewidth,
+        breaklines=true,
+        breakatwhitespace=true,
+        basicstyle=\scriptsize\ttfamily,
+        numbers=left,
+        numberfirstline=false,
+        numberstyle=\scriptsize,
+        stepnumber=1,
+        numbersep=5pt,
+        showspaces=false,
+        showtabs=false,
+        showstringspaces=false,
+        showlines=false,
+        extendedchars=true,
+        identifierstyle=\bfseries,
+        keywordstyle=\bfseries,
+        commentstyle=\itshape,
+        stringstyle=\ttfamily,
+        flexiblecolumns=false,
+        fontadjust=true,
+        frame=trbl,
+        captionpos=b,
+        aboveskip=25pt,
+}
+
 
 \title[OWL]{Ontologien und formale Semantik in OWL}
 \author{Timon Link, Matthias Jurisch}
@@ -14,6 +43,7 @@
 \end{frame}
 
 \begin{frame}{Übersicht}
+\tableofcontents
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%% Grundlagen %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -24,6 +54,7 @@
 %%%%%%%%%%%%%%%%%%%%%% T Rückblick RDF %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%% M Ausdruck von RDF-Konstrukten einfacher mit OWL (pointer auf Header auch)
 
+\section{Vereinfachung von RDF-Ausdrücken mit OWL}
 \begin{frame}[fragile]{Vereinfachung von RDF-Ausdrücken mit
 OWL}
 \begin{block}{Klassen in RDFS}
@@ -42,6 +73,24 @@ OWL}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%% M was kann nicht in RDF ausgedrückt werden?
+
+\section{Grenzen von RDF}
+
+\begin{frame}[fragile]{Grenzen von RDF}
+\begin{block}{Negative Aussagen in RDF}
+\begin{itemize}
+\item Nicht Möglich
+\item Auch nicht über Umwege
+\end{itemize}
+\end{block}
+\begin{exampleblock}{Beispiel}
+\begin{lstlisting}
+ex:sebastian rdf:type ex:Nichtraucher.
+ex:sebastian rdf:type ex:Raucher.
+\end{lstlisting}
+$\rightarrow$ Kein Widerspruch, auch nicht Möglich diesen auszudrücken
+\end{exampleblock}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%-Inhalt-
 
