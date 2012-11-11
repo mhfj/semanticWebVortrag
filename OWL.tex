@@ -1,6 +1,7 @@
 \documentclass{beamer}
 \usepackage[utf8x]{inputenc}
 \usepackage{color}
+\usetheme{Boadilla}
 \definecolor{specialblue}{rgb}{0.2,0.2,0.7}
 
 \title[OWL]{Ontologien und formale Semantik in OWL}
@@ -19,17 +20,83 @@
 \begin{frame}{W3C}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%% T Rückblick RDF %%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%% M Ausdruck von RDF-Konstrukten einfacher mit OWL (pointer auf Header auch)
+\begin{frame}{Rückblick RDF}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%% M Ausdruck von RDF-Konstrukten einfacher mit 
+%OWL (pointer auf Header auch)
 %%%%%%%%%%%%%%%%%%%%%% M was kann nicht in RDF ausgedrückt werden?
 
 %%%%%%%%%%%%%%%%%%%%%%-Inhalt-
 
-%%%%%%%%%%%%%%%%%%%%%% T Neues in OWL, dass Ausdrucksmöglichkeiten von RDF übersteigt (Hier Header beschreiben)
+%%%%%%%%%%%%%%%%%%%%%% T Neues in OWL, dass Ausdrucksmöglichkeiten von 
+%RDF übersteigt (Hier Header beschreiben)
+\begin{frame}{Neuerungen in OWL}
+
+\end{frame}
+
+\begin{frame}{Ontologie Kopf}
+
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%% M Probleme in OWL: Entscheidbarkeit etc.
 
 %%%%%%%%%%%%%%%%%%%%%% -> Drei OWL-Varianten
 %%%%%%%%%%%%%%%%%%%%%% T eingehena auf Tabelle 
+\begin{frame}{OWL - Teilsprachen}
+\begin{itemize}
+	\item OWL ist durch Mächtigkeit sehr komplex
+	\item Deshalb Aufteilung in drei Teilsprachen:
+\begin{itemize}
+	\item OWL Full
+	\item OWL DL
+	\item OWL LITE
+\end{itemize}
+	\item unterschiedliche Komplexität und Mächtigkeiten
+\end{itemize}
+\begin{block}{Relationen}
+	Es gilt:\\
+	$OWL Lite \subseteq OWL DL \subseteq OWL Full$
+\end{block}
+\end{frame}
+
+%
+\begin{frame}{OWL Full}
+\begin{itemize}
+	\item enthält als einzige Teilsprache \alert{ganz} RDFS
+	\item enthält OWL DL und OWL LITE als Teilsprachen
+	\item sehr ausdrucksstark
+	\item ABER: \alert{unentscheidbar}
+	\item deshalb keine Praxisrelevanz
+\end{itemize}
+\end{frame}
+
+%
+\begin{frame}{OWL DL}
+\begin{itemize}
+	\item enthält OWL Lite und ist Teilsprache von OWL Full
+	\item enscheidbar
+	\item sehr Praxisrelevant
+	\item daher wird es von den meisten Softwarewerkzeugen unterstützt
+\end{itemize}
+\begin{block}{Komplexität}
+	NExpTime
+\end{block}
+\end{frame}
+
+%
+\begin{frame}{OWL Lite}
+\begin{itemize}
+	\item ist Teilsprache von OWL DL und OWL Full
+	\item entscheidbar
+	\item weniger ausdrucksstark
+	\item deswegen kaum Praxisrelevanz
+\end{itemize}
+\begin{block}{Komplexität}
+	ExpTime
+\end{block}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%% M einige Sprachkonstrukte 
 
 
