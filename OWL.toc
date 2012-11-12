@@ -1,8 +1,0 @@
-\beamer@endinputifotherversion {3.20pt}
-\beamer@sectionintoc {1}{Historie und Herkunft}{3}{0}{1}
-\beamer@sectionintoc {2}{Kurzer R\IeC {\"u}ckblick auf RDF}{4}{0}{2}
-\beamer@sectionintoc {3}{Vereinfachung von RDF-Ausdr\IeC {\"u}cken mit OWL}{4}{0}{3}
-\beamer@sectionintoc {4}{Grenzen von RDF}{8}{0}{4}
-\beamer@sectionintoc {5}{Neue Ausdrucksm\IeC {\"o}glichkeiten in OWL}{9}{0}{5}
-\beamer@sectionintoc {6}{OWL-Varianten}{11}{0}{6}
-\beamer@sectionintoc {7}{Fazit}{15}{0}{7}
