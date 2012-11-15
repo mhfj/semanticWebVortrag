@@ -51,6 +51,19 @@
 %%%%%%%%%%%%%%%%%%%%%% T Rückblick RDF %%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Kurzer Rückblick auf RDF}
+\begin{frame}{RDF - ein kurzer Rückblick}
+\begin{itemize}
+	\item \alert{R}esource \alert{D}escription \alert{L}anguage
+	\item formale Sprache zur Beschreibungen einfacher Ontologien
+	\item Graphen statt Bäume (Trotz XML Syntax)
+	\item Beschreibung eines Graphen mit Tripeln: (subject, predicat, object)
+	\item Was hat RDF mit OWL zu tun?
+\end{itemize}
+\begin{block}{Genau das:}
+	RDF(S) ist in OWL (Full) enthalten\\
+	Daher ist jedes OWL Dokument auch ein RDF(S) Dokument.
+\end{block}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%% M Ausdruck von RDF-Konstrukten einfacher mit OWL (pointer auf Header auch)
 
@@ -214,7 +227,22 @@ $\rightarrow$ Kein Widerspruch, auch nicht Möglich diesen auszudrücken
 
 \end{frame}
 
-\begin{frame}{Kopf einer OWL-Ontologie}
+\begin{frame}[fragile]{Kopf einer OWL-Ontologie}
+\begin{block}{Kopf einer OWL-Ontologie, Aufgabe:}
+Speicherung von Informationen, die für das gesamte Dokument gültig sind.
+\end{block}
+\begin{itemize}
+	\item Deklarationen von Namensräumen analog zu RDF(s)
+	\item weitere Informationen werden in diesem  Tag definiert: 
+\end{itemize}
+\begin{block}{OWL Ontology}
+\begin{lstlisting}[lang="xml"]
+<owl:Ontology rdf:about=""> ... <owl:Ontology>
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}{Kopf einer OWL-Ontologie II}
 
 \end{frame}
 
