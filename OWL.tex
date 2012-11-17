@@ -51,6 +51,19 @@
 %%%%%%%%%%%%%%%%%%%%%% T Rückblick RDF %%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Kurzer Rückblick auf RDF}
+\begin{frame}{RDF - ein kurzer Rückblick}
+\begin{itemize}
+	\item \alert{R}esource \alert{D}escription \alert{L}anguage
+	\item formale Sprache zur Beschreibungen einfacher Ontologien
+	\item Graphen statt Bäume (Trotz XML Syntax)
+	\item Beschreibung eines Graphen mit Tripeln: (subject, predicat, object)
+	\item Was hat RDF mit OWL zu tun?
+\end{itemize}
+\begin{block}{Genau das:}
+	RDF(S) ist in OWL (Full) enthalten\\
+	Daher ist jedes OWL Dokument auch ein RDF(S) Dokument.
+\end{block}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%% M Ausdruck von RDF-Konstrukten einfacher mit OWL (pointer auf Header auch)
 
@@ -223,8 +236,65 @@ $\rightarrow$ Kein Widerspruch, auch nicht Möglich diesen auszudrücken
 
 \end{frame}
 
-\begin{frame}{Kopf einer OWL-Ontologie}
+\begin{frame}[fragile]{Kopf einer OWL-Ontologie}
+\begin{block}{Kopf einer OWL-Ontologie, Aufgabe:}
+Speicherung von Informationen, die für das gesamte Dokument gültig sind.
+\end{block}
+\begin{itemize}
+	\item Deklarationen von Namensräumen analog zu RDF(s)
+	\item weitere Informationen werden in diesem  Tag definiert: 
+\end{itemize}
+\begin{block}{OWL Ontology}
+\begin{lstlisting}[lang="xml"]
+<owl:Ontology rdf:about=""> ... <owl:Ontology>
+\end{lstlisting}
+\end{block}
+\end{frame}
 
+\begin{frame}{Kopf einer OWL-Ontologie II}
+Inhalte des OWL Headers:
+\begin{itemize}
+	\item bekannte Strukturen aus RDFS:
+	\begin{itemize}
+		\item  \emph{rdfs:comment} - Kommentare zur Ontologie
+		\item  \emph{rdfs:label} - Beschreibung der Ontologie
+		\item  \emph{rdfs:seeAlso} - Externe Verweise
+		\item  \emph{rdfs:isDefinedBy} - Subjekt "wird definiert von" Objekt
+	\end{itemize}
+\end{itemize}
+\begin{itemize}
+	\item Neue Strukturen aus OWL:
+	\begin{itemize}
+		\item \emph{owl:versionInfo} - Versionsangabe der Ontologie
+		\item \emph{owl:priorVersion} - Vorgängerversion
+		\item \emph{owl:backwardCompatibleWith} - Abwärtskompatibilität
+		\item \emph{owl:incompatibleWith} - Inkompatibel
+		\item \emph{owl:DeprecatedClass} - veraltete Klasse
+		\item \emph{owl:DeprecatedProperty} - veraltete Property
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Kopf einer Ontologie Beispiel}
+\begin{block}{Beispiel}
+\begin{lstlisting}[lang="xml"]
+<owl:Ontology rdf:about=""> 
+  <rdfs:comment rdf:datatype="string">
+    Ontologie der Kochplattform 
+    Rezepte zum Ausprobieren.		
+  </rdfs:comment>
+  <rdfs:label rdf:datatype="string">
+    Rezepte, Kochen, Backen
+  </rdfs:label>
+  <owl:versionInfo>1.0.4</owl:versionInfo>
+  <owl:DeprecatedClass rdf:ID="Suppen">
+    <rdfs:comment  rdf:datatype="string">
+      Eintopf ersetzt Suppe
+    </rdfs:comment>
+  </owl:DeprecatedClass>
+<owl:Ontology>
+\end{lstlisting}
+\end{block}
 \end{frame}
 
 
