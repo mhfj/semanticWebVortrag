@@ -70,16 +70,14 @@
 \section{Vereinfachung von RDF-Ausdrücken mit OWL}
 \begin{frame}[fragile]{Vereinfachung von RDF-Ausdrücken mit
 OWL}
-\begin{block}{Vereinfachung von Ausdrücken}
 \begin{itemize}
 \item RDF/RDFS lässt sich durch OWL einfacher und abgekürzt ausdrücken
 \end{itemize}
-\end{block}
 
 \begin{block}{Daher}
 \begin{itemize}
 \item Kurze Auflistung von Abkürzungen.
-\item kennenlernen der wesentlichen Sprachkonstrukt
+\item kennenlernen der wesentlichen Sprachkonstrukte
 \end{itemize}
 \end{block}
 
@@ -138,6 +136,28 @@ OWL}{Unterklassen}
 
 \end{frame}
 
+\begin{frame}[fragile]{Vereinfachung von RDF-Ausdrücken mit OWL}{Properties}
+\begin{itemize}
+\item RDF-Propertys $\rightarrow$ OWL-Rollen
+\begin{block}{Abstrakte Rollen}
+\begin{itemize}
+\item Verbindungen zwischen Individuen und Individuen
+\item Knotentyp: \tt owl:ObjectProperty
+\end{itemize}
+\end{block}
+
+\begin{block}{Konkrete Rollen}
+\begin{itemize}
+\item Verbindungen zwischen Individuen und Datenwerte
+\item Knotentyp: \tt owl:DatatypeProperty
+\end{itemize}
+\end{block}
+
+\item Beide sind Unterklasse von \texttt{rdf:Property}
+\item Verwendung dementsprechend analog zu \texttt{rdf:Property}
+
+\end{itemize}
+\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%% M was kann nicht in RDF ausgedrückt werden?
@@ -298,6 +318,12 @@ Inhalte des OWL Headers:
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%%%% formale Semantik von OWL
+
+\section{Formale Semantik von OWL}
+
+\begin{frame}{Formale Semantik von OWL}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%% M einige Sprachkonstrukte 
 
