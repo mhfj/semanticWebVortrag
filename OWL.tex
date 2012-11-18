@@ -318,6 +318,79 @@ Inhalte des OWL Headers:
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%%%% M einige Sprachkonstrukte 
+
+\begin{frame}[fragile]{Beziehungen zwischen Individuen}
+\begin{itemize}
+\item In OWL lassen sich beziehungen zwischen Individuen ausdrücken
+\item Es existiert keine \emph{Unique Name Assumption}
+\item Mit \texttt{owl:sameAs} lässt sich ausdrücken, dass zwei
+Individuen identisch sind.
+
+\begin{exampleblock}{Beispiel}
+\begin{lstlisting}[lang="xml"]
+<Suppe rdf:about="Kohlsuppe"/>
+<rdf:Description rdf:about="OmasKohlSuppe">
+  <owl:sameAs rdf:resource="Kohlsuppe"/>
+</rdf:Description>
+\end{lstlisting}
+\end{exampleblock}
+\item \alert{Schlussfolgerung:} Im Beispiel ist \texttt{OmasKohlSuppe} auch eine
+\texttt{Suppe}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beziehungen zwischen Individuen}
+\begin{itemize}
+\item Ähnliches ist auch umgekehrt möglich
+\item \texttt{owl:differentFrom} gibt dies an
+\end{itemize}
+\begin{block}{Abkürzende Schreibweise für viele Individuen}
+\begin{lstlisting}[lang="xml"]
+<owl:AllDifferent>
+  <owl:distinctMembers rdf:parseType="Collection">
+    <Suppe rdf:about="Gulaschsuppe"/>
+    <Suppe rdf:about="UngarischeGulaschsuppe"/>
+    <Suppe rdf:about="Kohlsuppe"/>
+  </owl:distinctMembers>
+</owl:Alldifferent>
+\end{lstlisting}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Klassenbeziehungen}
+\begin{itemize}
+\item Äquivalente Relationen zu \texttt{owl:sameAs} und \texttt{owl:differentFrom}
+existieren auch für Klassen
+\item \texttt{owl:disjointWith}
+\begin{itemize}
+ \item disjunktheit zweier Klassen
+\end{itemize}
+\item \texttt{owl:equivalentClass}
+\begin{itemize}
+ \item Gleichheit zweier Klassen
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Logische Konstruktoren}
+\begin{itemize}
+\item \emph{Disjunktion, Konjunktion} und \emph{Negation} können
+ausgedrückt werden.
+\item In \emph{OWL Lite} nur beschränkt erlaubt.
+\item Werden als \emph{Logische Konstruktoren} bezeichnet
+\item Auf diese Weise können komplexe Klassen erstellt werden
+\item Sprachkonstrukte:
+\begin{itemize}
+\item \texttt{owl:intersectionOf}
+\item \texttt{owl:unionOf}
+\item \texttt{owl:complementOf}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
 %%%%%%%%%%%%%%%%%%%%%% formale Semantik von OWL
 
 \section{Formale Semantik von OWL}
@@ -325,7 +398,6 @@ Inhalte des OWL Headers:
 \begin{frame}{Formale Semantik von OWL}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%% M einige Sprachkonstrukte 
 
 \section{Fazit}
 \begin{frame}{Fazit}
