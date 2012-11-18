@@ -467,7 +467,19 @@ Zutaten vom Typ Gemüse.''}
 \begin{frame}[fragile]{Rolleneigenschaften}{Beziehungen}
 \begin{itemize}
 \item Spezifikation von sogenannten \emph{characteristics}
-\item 
+\item Abgebildet über \texttt{rdf:type}
+\item Mögliche Characteristics:
+\begin{description}
+\item[\texttt{owl:TransitiveProperty}] transitivität einer Rolle
+\item[\texttt{owl:SymmetricProperty}] wechselseitige Beziehungen
+\item[\texttt{owl:FunctionalProperty}] eindeutige Beziehungen
+\item[\texttt{owl:InverseFunctionalProperty}] umgekehrt eindeutige Beziehungen
+\item[\texttt{owl:inverseOf}] Property ist die Inverse einer anderen 
+
+
+\end{description}
+\item Weitere Details bei formaler Semantik
+\item Anwendung wie bei RDF-Propertys
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%% formale Semantik von OWL
