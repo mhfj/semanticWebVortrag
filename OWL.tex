@@ -358,7 +358,7 @@ Individuen identisch sind.
 \end{block}
 
 \end{frame}
-
+%
 \begin{frame}[fragile]{Klassenbeziehungen}
 \begin{itemize}
 \item Äquivalente Relationen zu \texttt{owl:sameAs} und \texttt{owl:differentFrom}
@@ -373,7 +373,7 @@ existieren auch für Klassen
 \end{itemize}
 \end{itemize}
 \end{frame}
-
+%
 \begin{frame}[fragile]{Logische Konstruktoren}
 \begin{itemize}
 \item \emph{Disjunktion, Konjunktion} und \emph{Negation} können
@@ -387,10 +387,89 @@ ausgedrückt werden.
 \item \texttt{owl:unionOf}
 \item \texttt{owl:complementOf}
 \end{itemize}
+\item Schachtelung Möglich
 \end{itemize}
+\end{frame}
+%
+\begin{frame}[fragile]{Logische Konstruktoren}
+\begin{exampleblock}{Beispiel}
+\begin{lstlisting}[lang="xml"]
+<owl:Class rdf:About="Eintopf>
+  <rdfs:subClassOf>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:intersectionOf rdf:parseType="Collection">
+        <owl:Class rdf:about="Suppen"/>
+        <owl:Class rdf:about="MachtSatt"/>
+      </owl:intersectionOf>
+      <owl:complementOf>
+        <owl:Class rdf:about="KlareSuppen"/>
+      </owl:complementOf>
+    </owl:unionOf>
+  </rdfs:subClassOf>
+</owl:Class>
+\end{lstlisting}
+\end{exampleblock}
+
+\end{frame}
+%
+
+\begin{frame}[fragile]{Rolleneigenschaften}{Restrictions}
+\begin{itemize}
+\item Rollen können eingeschränkt werden
+\item Beschränkung ist von der Klasse abhängig
+\item \texttt{owl:Restriction} beschreibt Klassen
+\item \texttt{owl:onProperty} ist die Rolle, auf die sich bezogen wird
+\item Mögliche Einschränkungen:
+\begin{itemize}
+\item Werte:
+\begin{itemize}
+\item \texttt{owl:allValuesFrom}
+\item \texttt{owl:someValuesFrom}
+\item \texttt{owl:hasValue}
+\end{itemize}
+\item Kardinalität:
+\begin{itemize}
+\item \texttt{owl:maxCardinality}
+\item \texttt{owl:minCardinality}
+\item \texttt{owl:Cardinality}
+\end{itemize}
+
+\end{itemize}
+
+\end{itemize}
+
+
+\end{frame}
+%
+
+\begin{frame}[fragile]{Rolleneigenschaften}{Restrictions}
+\begin{exampleblock}{Beispiel}
+\begin{lstlisting}[lang="xml"]
+<owl:Class rdf:about="Gemueseeintopf">
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="hatZutat"/>
+      <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">
+        3
+      </owl:minCardinality>
+      <owl:someValuesFrom rdf:resource="Gemuese"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+\end{lstlisting}
+\alert{Nicht:} \emph{,,Ein Gemüseeintopf hat mindestens drei
+Zutaten vom Typ Gemüse.''}
+\end{exampleblock}
 \end{frame}
 
 
+%
+\begin{frame}[fragile]{Rolleneigenschaften}{Beziehungen}
+\begin{itemize}
+\item Spezifikation von sogenannten \emph{characteristics}
+\item 
+\end{itemize}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%% formale Semantik von OWL
 
 \section{Formale Semantik von OWL}
