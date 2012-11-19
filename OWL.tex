@@ -333,7 +333,7 @@ Individuen identisch sind.
 
 \begin{exampleblock}{Beispiel}
 \begin{lstlisting}[lang="xml"]
-<Suppe rdf:about="Kohlsuppe"/>
+<Eintopf rdf:about="Kohlsuppe"/>
 <rdf:Description rdf:about="OmasKohlSuppe">
   <owl:sameAs rdf:resource="Kohlsuppe"/>
 </rdf:Description>
@@ -353,9 +353,9 @@ Individuen identisch sind.
 \begin{lstlisting}[lang="xml"]
 <owl:AllDifferent>
   <owl:distinctMembers rdf:parseType="Collection">
-    <Suppe rdf:about="Gulaschsuppe"/>
-    <Suppe rdf:about="UngarischeGulaschsuppe"/>
-    <Suppe rdf:about="Kohlsuppe"/>
+    <Eintopf rdf:about="Gulaschsuppe"/>
+    <Eintopf rdf:about="UngarischeGulaschsuppe"/>
+    <Eintopf rdf:about="Kohlsuppe"/>
   </owl:distinctMembers>
 </owl:Alldifferent>
 \end{lstlisting}
@@ -402,7 +402,7 @@ ausgedrückt werden.
   <rdfs:subClassOf>
     <owl:unionOf rdf:parseType="Collection">
       <owl:intersectionOf rdf:parseType="Collection">
-        <owl:Class rdf:about="Suppen"/>
+        <owl:Class rdf:about="Suppenartig"/>
         <owl:Class rdf:about="MachtSatt"/>
       </owl:intersectionOf>
       <owl:complementOf>
@@ -461,8 +461,6 @@ ausgedrückt werden.
   </rdfs:subClassOf>
 </owl:Class>
 \end{lstlisting}
-\alert{Nicht:} \emph{,,Ein Gemüseeintopf hat mindestens drei
-Zutaten vom Typ Gemüse.''}
 \end{exampleblock}
 \end{frame}
 
@@ -474,7 +472,7 @@ Zutaten vom Typ Gemüse.''}
 \item Abgebildet über \texttt{rdf:type}
 \item Mögliche Characteristics:
 \begin{description}
-\item[\texttt{owl:TransitiveProperty}] transitivität einer Rolle
+\item[\texttt{owl:TransitiveProperty}] Transitivität einer Rolle
 \item[\texttt{owl:SymmetricProperty}] wechselseitige Beziehungen
 \item[\texttt{owl:FunctionalProperty}] eindeutige Beziehungen
 \item[\texttt{owl:InverseFunctionalProperty}] umgekehrt eindeutige Beziehungen
@@ -482,10 +480,36 @@ Zutaten vom Typ Gemüse.''}
 
 
 \end{description}
-\item Weitere Details bei formaler Semantik
 \item Anwendung wie bei RDF-Propertys
 \end{itemize}
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%% erlaubte Konstrukte in OWL-Varianten
+
+\begin{frame}{Erlaubte Konstrukte in OWL-Varianten}
+\begin{itemize}
+\item \emph{OWL-Full}: alles ist erlaubt
+\item Leicht eingeschränkte Variante: \emph{OWL-DL}
+\begin{itemize}
+\item Verwendung von \texttt{rdfs:Class} und \texttt{rdf:Property} verboten
+\item Alle Klassen und Rollen müssen explizit deklariert werden
+\item Restriktionen für Kardinalität dürfen nicht mit transitiven oder
+inversen Rollen verwendet werden.
+\item Gilt auch für Oberrollen von transitiven und inversen Rollen
+\end{itemize}
+\item \emph{OWL-Light}
+\begin{itemize}
+\item Alle Einschränkungen von \emph{OWL-DL}
+\item Kardinalitäten nur 0 oder 1
+\item Verboten: \texttt{owl:oneOf, owl:unionOf, owl:complementOf,
+owl:hasValue, owl:disjointWith, owl:DataRange}
+\item An bestimmten stellen sind nur Klassennamen oder Restriktionen
+erlaubt
+\end{itemize}
+\end{itemize}
+\end{frame} 
+
+
 %%%%%%%%%%%%%%%%%%%%%% formale Semantik von OWL
 
 \section{Formale Semantik von OWL}
