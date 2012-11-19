@@ -355,7 +355,7 @@ Individuen identisch sind.
 
 \begin{exampleblock}{Beispiel}
 \begin{lstlisting}[lang="xml"]
-<Eintopf rdf:about="Kohlsuppe"/>
+<Suppe rdf:about="Kohlsuppe"/>
 <rdf:Description rdf:about="OmasKohlSuppe">
   <owl:sameAs rdf:resource="Kohlsuppe"/>
 </rdf:Description>
@@ -375,9 +375,9 @@ Individuen identisch sind.
 \begin{lstlisting}[lang="xml"]
 <owl:AllDifferent>
   <owl:distinctMembers rdf:parseType="Collection">
-    <Eintopf rdf:about="Gulaschsuppe"/>
-    <Eintopf rdf:about="UngarischeGulaschsuppe"/>
-    <Eintopf rdf:about="Kohlsuppe"/>
+    <Suppe rdf:about="Gulaschsuppe"/>
+    <Suppe rdf:about="UngarischeGulaschsuppe"/>
+    <Suppe rdf:about="Kohlsuppe"/>
   </owl:distinctMembers>
 </owl:Alldifferent>
 \end{lstlisting}
@@ -465,7 +465,7 @@ ausgedrückt werden.
   <rdfs:subClassOf>
     <owl:unionOf rdf:parseType="Collection">
       <owl:intersectionOf rdf:parseType="Collection">
-        <owl:Class rdf:about="Suppenartig"/>
+        <owl:Class rdf:about="Suppen"/>
         <owl:Class rdf:about="MachtSatt"/>
       </owl:intersectionOf>
       <owl:complementOf>
@@ -524,6 +524,8 @@ ausgedrückt werden.
   </rdfs:subClassOf>
 </owl:Class>
 \end{lstlisting}
+\alert{Nicht:} \emph{,,Ein Gemüseeintopf hat mindestens drei
+Zutaten vom Typ Gemüse.''}
 \end{exampleblock}
 \end{frame}
 
@@ -535,7 +537,7 @@ ausgedrückt werden.
 \item Abgebildet über \texttt{rdf:type}
 \item Mögliche Characteristics:
 \begin{description}
-\item[\texttt{owl:TransitiveProperty}] Transitivität einer Rolle
+\item[\texttt{owl:TransitiveProperty}] transitivität einer Rolle
 \item[\texttt{owl:SymmetricProperty}] wechselseitige Beziehungen
 \item[\texttt{owl:FunctionalProperty}] eindeutige Beziehungen
 \item[\texttt{owl:InverseFunctionalProperty}] umgekehrt eindeutige Beziehungen
@@ -543,43 +545,83 @@ ausgedrückt werden.
 
 
 \end{description}
+\item Weitere Details bei formaler Semantik
 \item Anwendung wie bei RDF-Propertys
 \end{itemize}
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%% erlaubte Konstrukte in OWL-Varianten
-
-\begin{frame}{Erlaubte Konstrukte in OWL-Varianten}
-\begin{itemize}
-\item \emph{OWL-Full}: alles ist erlaubt
-\item Leicht eingeschränkte Variante: \emph{OWL-DL}
-\begin{itemize}
-\item Verwendung von \texttt{rdfs:Class} und \texttt{rdf:Property} verboten
-\item Alle Klassen und Rollen müssen explizit deklariert werden
-\item Restriktionen für Kardinalität dürfen nicht mit transitiven oder
-inversen Rollen verwendet werden.
-\item Gilt auch für Oberrollen von transitiven und inversen Rollen
-\end{itemize}
-\item \emph{OWL-Light}
-\begin{itemize}
-\item Alle Einschränkungen von \emph{OWL-DL}
-\item Kardinalitäten nur 0 oder 1
-\item Verboten: \texttt{owl:oneOf, owl:unionOf, owl:complementOf,
-owl:hasValue, owl:disjointWith, owl:DataRange}
-\item An bestimmten stellen sind nur Klassennamen oder Restriktionen
-erlaubt
-\end{itemize}
-\end{itemize}
-\end{frame} 
-
-
 %%%%%%%%%%%%%%%%%%%%%% formale Semantik von OWL
 
 \section{Formale Semantik von OWL}
 
-\begin{frame}{Formale Semantik von OWL}
+\begin{frame}[fragile]{Formale Semantik von OWL}{Die Beschreibungslogik ALC}
+ALC besteht aus Klassen, Rollen und Individuen. OWL DL lässt sich mittels ALC vollständig
+beschreiben.
+\begin{block}{ALC Ausdrücke}
+\begin{itemize}
+	\item \texttt{Eintopf(ChiliConCarne)} \texttt{ChiliConCarne} $ \rightarrow $ ist Individuum von \texttt{Eintopf} 
+	\item \texttt{IstZutat(GemischtesHackFleisch, ChiliConCarne)} $ \rightarrow $ Rollenbeziehung
+	\item \texttt{Eintopf $ \subseteq $ FluessigGericht} $ \rightarrow $ Unterklassenbeziehung
+	\item \texttt{Suppe $ \equiv $ Eintopf} $ \rightarrow $ Äquivalenz
+	\item \texttt{$ \sqcap, \sqcup, \neg $} $ \rightarrow $ Konjunktion, Disjunktion, Negation
+\end{itemize}
+\texttt{ChiliConCarne $ \subseteq $ (FleischGericht $ \sqcap $ FluessigGericht) $ \sqcup $ (FleischGericht $ \sqcap \neg $Auflauf))}
+\end{block}
 \end{frame}
 
+\begin{frame}{Formale Semantik von OWL}{Die Beschreibungslogik ALC II}
+Komplexe Klassen können mit Hilfe von Quantoren bexchrieben werden.
+\begin{block}{Quantoren}
+	Ist R eine Rolle und C eine Klasse, so gilt: \texttt{$\forall $R.C} und \texttt{$ \exists $R.C}\\
+	Beispiel:\\
+	\texttt{GemischtesHackFleisch $ \subseteq $ $ \forall $hatZutat.Fleisch}\\
+	$ \rightarrow $ Alle Zutaten von GemischtesHackFleisch müssen vom Typ Fleisch sein.
+	\texttt{Fleischgericht $ \subseteq $ $ \exists $hatZutat.Fleisch}\\
+	$ \rightarrow $ Ein Fleischgericht hat mindestens eine Fleischsorte als Zutat.
+\end{block}
+\end{frame}
+
+\begin{frame}{Formale Semantik von OWL}{Modelierung von OWL DL mittels ALC}
+\begin{block}{modellierung von OWL DL Konstrukten in ALC}
+\begin{itemize}
+	\item \texttt{owl:Nothing} $ \rightarrow $ $ \perp \equiv C \sqcap \neg C $
+	\item \texttt{owl:Thing} $ \rightarrow $ $ \top \equiv C \sqcup \neg C $
+	\item \texttt{owl:disjointWith} $\rightarrow $ $ C \sqcap D \equiv \top  $	
+	\item \texttt{rdfs:range} $\rightarrow $ $ \top \subseteq \forall R.C $ (Range von R ist C)
+	\item \texttt{rdfs:domain} $\rightarrow $ $ \exists R.\top \subseteq C $ (Domain von R ist C)
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Automatisiertes Schlussfolgern mit OWL}
+\begin{frame}{Automatisiertes Schlussfolgern mit OWL}{Das Tableauverfahren}
+Wir nennen die Menge aus ALC Ausdrücken einer Ontologie \emph{Wissensbasis W}.
+Transformation von ALC in \emph{Negationsnormalform}:
+\begin{itemize}
+	\item ersetze alle $ C \equiv D $ durch $ C \subseteq D $ und $ D \subseteq C $
+	\item ersetze alle $ C \subseteq D $ durch $ \neg C \sqcup D $
+\end{itemize}
+\begin{block}{Wissensbasis}
+	Resultierende Wissensbasis: \emph{NNF(W)}\\
+	$ \rightarrow $ NNF(W) und W sind \emph{logisch equivalent}
+\end{block}
+Das Tableauverfahren wertet aus, ob eine Wissensbasis erfüllbarbar ist. 
+\end{frame}
+
+\begin{frame}{Automatisiertes Schlussfolgern mit OWL}{Das Tableauverfahren}
+Vorgehen beim Tableauverfahren:
+\begin{itemize}
+	\item Überführe Wissensbasis W in NNF(W)
+	\item Löse logische Ausdrücke in einzelne Terme auf
+	\item Durchsuche resultierende NNF(W) nach Widersprüchen
+\end{itemize}
+\begin{block}{Beispiel}
+Gegeben: Wissensbasis NNF(W): $ C(a) $  $ (\neg C \sqcap D)(a) $
+\begin{itemize}
+	\item Auflösen in Terme: $ (\neg C \sqcap D)(a) $ wird zu $ \neg C(a) \sqcap D(a) $
+	\item Widerspruch in NNF(W) bei $ C(a) $ $ \neg C(a) $ 
+\end{itemize}
+\end{block}	
+\end{frame}
 
 \section{Fazit}
 \begin{frame}{Fazit}
