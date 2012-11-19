@@ -45,11 +45,24 @@
 
 %%%%%%%%%%%%%%%%%%%%%% Grundlagen %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%% T W3C-Scheiss %%%%%%%%%%%%%%%%%%%%%%%%%%
+% Working group: http://www.w3.org/2001/sw/WebOnt/
+% OWL bwcomes recommendation: http://www.w3.org/2001/sw/WebOnt/
+% OWL official recommendation: http://www.w3.org/News/2004.html
 \section{Historie und Herkunft}
 \begin{frame}{Historie und Herkunft}
 	\begin{itemize}
-	\item OWL - Web Ontology Language
-	\item 19. August 2003 als Vorschlag vorgestellt
+	\item OWL - Web Ontology Language (Warum nicht WOL?)
+	\item Name entstanden aus 3 Gründen:
+		\begin{itemize}
+			\item es ist klar, wie er ausgesprochen wird (engl. Eule) 
+			\item er eröffnet gute Möglichkeiten für Logos
+			\item Eulen werden mit Weisheit in Verbindung gebracht
+		\end{itemize}
+	\item 01. November 2001 Web-Ontologie Working Group wurde gegründet
+	\item 15. Dezember 2003 OWL als Vorschlag bei W3C vorgestellt
+	\item 10. Februar 2004 wird OWL zum offizielen \textit{recommendation}
+	\item 30. Mai 2004 wurde die Web-Ontologie Working Group geschlossen
+	\item 6. September 2007 Gründung der OWL Working Group 
 	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%% T Rückblick RDF %%%%%%%%%%%%%%%%%%%%%%%
@@ -65,7 +78,7 @@
 \end{itemize}
 \begin{block}{Genau das:}
 	RDF(S) ist in OWL (Full) enthalten\\
-	Daher ist jedes OWL Dokument auch ein RDF(S) Dokument.
+	Daher ist jedes RDF(S) Dokument auch ein OWL Dokument.
 \end{block}
 \end{frame}
 
@@ -257,7 +270,16 @@ $\rightarrow$ Kein Widerspruch, auch nicht Möglich diesen auszudrücken
 %RDF übersteigt (Hier Header beschreiben)
 \section{Neue Ausdrucksmöglichkeiten in OWL}
 \begin{frame}{Neuerungen in OWL}
-
+In OWL gibt es neue Sprachkonstrukte:
+\begin{itemize}
+	\item Der Kopf einer OWL-Ontologie
+	\item Beziehungen zwischen Individuen
+	\item Klassen Beziehungen
+	\item Abgeschlossene Klassen
+	\item Logische Konstruktoren
+	\item Rolleneigenschaften
+\end{itemize}
+Im Folgenden werden diese Sprachkonstrukte genauer behandelt.
 \end{frame}
 
 \begin{frame}[fragile]{Kopf einer OWL-Ontologie}
@@ -280,21 +302,21 @@ Inhalte des OWL Headers:
 \begin{itemize}
 	\item bekannte Strukturen aus RDFS:
 	\begin{itemize}
-		\item  \emph{rdfs:comment} - Kommentare zur Ontologie
-		\item  \emph{rdfs:label} - Beschreibung der Ontologie
-		\item  \emph{rdfs:seeAlso} - Externe Verweise
-		\item  \emph{rdfs:isDefinedBy} - Subjekt "wird definiert von" Objekt
+		\item  \texttt{rdfs:comment} - Kommentare zur Ontologie
+		\item  \texttt{rdfs:label} - Beschreibung der Ontologie
+		\item  \texttt{rdfs:seeAlso} - Externe Verweise
+		\item  \texttt{rdfs:isDefinedBy} - Subjekt "wird definiert von" Objekt
 	\end{itemize}
 \end{itemize}
 \begin{itemize}
 	\item Neue Strukturen aus OWL:
 	\begin{itemize}
-		\item \emph{owl:versionInfo} - Versionsangabe der Ontologie
-		\item \emph{owl:priorVersion} - Vorgängerversion
-		\item \emph{owl:backwardCompatibleWith} - Abwärtskompatibilität
-		\item \emph{owl:incompatibleWith} - Inkompatibel
-		\item \emph{owl:DeprecatedClass} - veraltete Klasse
-		\item \emph{owl:DeprecatedProperty} - veraltete Property
+		\item \texttt{owl:versionInfo} - Versionsangabe der Ontologie
+		\item \texttt{owl:priorVersion} - Vorgängerversion
+		\item \texttt{owl:backwardCompatibleWith} - Abwärtskompatibilität
+		\item \texttt{owl:incompatibleWith} - Inkompatibel
+		\item \texttt{owl:DeprecatedClass} - veraltete Klasse
+		\item \texttt{owl:DeprecatedProperty} - veraltete Property
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -311,7 +333,7 @@ Inhalte des OWL Headers:
     Rezepte, Kochen, Backen
   </rdfs:label>
   <owl:versionInfo>1.0.4</owl:versionInfo>
-  <owl:DeprecatedClass rdf:ID="Suppen">
+  <owl:DeprecatedClass rdf:ID="Suppe">
     <rdfs:comment  rdf:datatype="string">
       Eintopf ersetzt Suppe
     </rdfs:comment>
@@ -376,6 +398,40 @@ existieren auch für Klassen
  \item Gleichheit zweier Klassen
 \end{itemize}
 \end{itemize}
+\end{frame}
+%
+\begin{frame}[fragile]{Abgeschlossene Klassen}
+Dieses Konstrukt beschreibt, dass eine Klasse \emph{vollständig} ist. D.h. keine weiteren Individuen existieren		
+\begin{block}{Beispiel}
+\begin{lstlisting}[lang="xml"]
+<owl:Class rdf:about="GemischtesHackFleich">
+  <owl:oneOf rdf:parseType="Colection">
+    <Fleisch rdf:about="Schwein" />
+    <Fleisch rdf:about="Rind" />
+  </owl:oneOf>
+</owl:Class>
+\end{lstlisting}
+\end{block}
+Das Beispiel sagt aus, dass \texttt{Schwein} und \texttt{Rind} die einzigen Individuen der Klasse \texttt{GemischtesHackFleisch} sind.
+\end{frame}
+
+\begin{frame}[fragile]{Abgeschlossene Klassen}
+Will man noch Beschreiben, dass ein bestimmtes Individuum nicht zu einer Klasse
+gehört, muss folgendes ergänzt werden:	
+\begin{block}{Beispiel}
+\begin{lstlisting}[lang="xml"]
+<Fleisch rdf:about="Huehnchen" />
+<owl:allDifferent rdf:parseType="collection">
+  <Fleisch rdf:about="Schwein" />
+  <Fleisch rdf:about="Rind" />
+  <Fleisch rdf:about="Huehnchen" />
+</owl:allDifferent>
+\end{lstlisting}
+\end{block}
+Daraus folgt, dass \texttt{Huehnchen} \alert{kein} Individuum der Klasse 
+\texttt{GemischtesHackFleisch} ist,
+da mittels \texttt{owl:allDifferent} bestimmt wird, dass Hühnchen \alert{nicht} mit \texttt {Schwein}
+und \texttt{Rind} identisch sein kann.
 \end{frame}
 %
 \begin{frame}[fragile]{Logische Konstruktoren}
