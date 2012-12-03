@@ -524,8 +524,6 @@ ausgedrückt werden.
   </rdfs:subClassOf>
 </owl:Class>
 \end{lstlisting}
-\alert{Nicht:} \emph{,,Ein Gemüseeintopf hat mindestens drei
-Zutaten vom Typ Gemüse.''}
 \end{exampleblock}
 \end{frame}
 
@@ -585,7 +583,8 @@ Komplexe Klassen können mit Hilfe von Quantoren bexchrieben werden.
 \begin{itemize}
 	\item \texttt{owl:Nothing} $ \rightarrow $ $ \perp \equiv C \sqcap \neg C $
 	\item \texttt{owl:Thing} $ \rightarrow $ $ \top \equiv C \sqcup \neg C $
-	\item \texttt{owl:disjointWith} $\rightarrow $ $ C \sqcap D \equiv \top  $	
+	\item \texttt{owl:disjointWith} $\rightarrow $ $ C \sqcap D
+\equiv \perp  $	
 	\item \texttt{rdfs:range} $\rightarrow $ $ \top \subseteq \forall R.C $ (Range von R ist C)
 	\item \texttt{rdfs:domain} $\rightarrow $ $ \exists R.\top \subseteq C $ (Domain von R ist C)
 \end{itemize}
@@ -619,6 +618,7 @@ Gegeben: Wissensbasis NNF(W): $ C(a) $  $ (\neg C \sqcap D)(a) $
 \begin{itemize}
 	\item Auflösen in Terme: $ (\neg C \sqcap D)(a) $ wird zu $ \neg C(a) \sqcap D(a) $
 	\item Widerspruch in NNF(W) bei $ C(a) $ $ \neg C(a) $ 
+	\item Wissensbasis nicht erfüllbar
 \end{itemize}
 \end{block}	
 \end{frame}
